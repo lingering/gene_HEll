@@ -1,5 +1,6 @@
-# gene_HEll homor
+# gene_HEll homomorphic crypto
 project for class CS05177
+## ONLY use for test!
 # HOW TO USE
 ```
 git clone https://github.com/lingering/gene_HEll
