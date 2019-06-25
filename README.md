@@ -5,7 +5,7 @@ project for class CS05177
 git clone https://github.com/lingering/gene_HEll
 ```
 # Dependecies
-## SEAL
+## 1->SEAL
 make sure to install microsoft ![SEAL](https://github.com/Microsoft/SEAL)<br>
 ### Must in Global install
 Have root access to the system and thus you can install Microsoft SEAL system-wide as follows:
@@ -17,11 +17,11 @@ Have root access to the system and thus you can install Microsoft SEAL system-wi
   sudo make install
   cd ../..
 ```
-##   libboost
+##   2->libboost
 ```
   sudo apt-get install libboost-all-dev
 ```
-##  Cmake
+##  3->Cmake
 ### Building CMake from Scratch
  For User in UNIX/Mac OSX/MinGW/MSYS/Cygwin
 
