@@ -22,6 +22,20 @@ Have root access to the system and thus you can install Microsoft SEAL system-wi
   sudo apt-get install libboost-all-dev
 ```
 ##  Cmake
+### Building CMake from Scratch
+ For User in UNIX/Mac OSX/MinGW/MSYS/Cygwin
+
+You need to have a C++ compiler (supporting C++11) and a make installed. Run the bootstrap script you find in the source directory of CMake. You can use the --help option to see the supported options. You may use the --prefix=<install_prefix> option to specify a custom installation directory for CMake. Once this has finished successfully, run make and make install.
+
+For example, if you simply want to build and install CMake from source, you can build directly in the source tree:
+```
+  ./bootstrap && make && sudo make install
+```
+Or, if you plan to develop CMake or otherwise run the test suite, create a separate build tree:
+```
+  mkdir cmake-build && cd cmake-build
+  ../cmake-source/bootstrap && make
+```
 # Install
 ```
 cd gene_HEll
