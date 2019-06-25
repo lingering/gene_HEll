@@ -47,3 +47,9 @@ make
 cd ..
 ```
 ALl the executable files are in bin
+# Test
+```
+  cd bin
+  ./gene_server
+  ./gene_client
+```
