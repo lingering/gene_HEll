@@ -84,17 +84,27 @@ int main(){
         input.push_back(curr_point);
     }
 
-    cout << "Input vector: " << endl;
-    print_vector(input, 3, 7);
+    //cout << "Input vector: size:"<<input.size() << endl;
+    //print_vector(input, 3, 7);
     vector<Ciphertext> enc_gene_data_;
     vector<double> slice;
+    size_t step=poly_modulus_degree/2;
     size_t i=0;
-    do{
+    while(i<input.size()/step){
+        if((input.end()-(input.begin()+(i+1)*step))<step)
+            slice.assign(input.begin()+i*step,input.end());
 
-    }while(1);
-    auto enc_gene_data=params.encrypted_genedata(input);
+        else{
+        slice.assign(input.begin()+i*step,input.begin()+(i+1)*step);
+        }
+        enc_gene_data_.push_back(params.encrypted_genedata(slice));
+        slice.clear();
+        i+=1;
+        
+    }
+    ;
     net.write_enc_geneRNAs(enc_gene_data_);
-
+    cout<<"[+s]"<<i<<endl;
     free(buffer);
     return 0;
 }

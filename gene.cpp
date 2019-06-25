@@ -98,11 +98,11 @@ Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data){
         CKKSEncoder encoder(context);
         
         size_t slot_count = encoder.slot_count();
-        cout<<"[x]what?"<<endl;
+        //cout<<"[x]what?"<<endl;
         double scale = pow(2.0, 40);
-        cout<<"[xx]what?"<<endl;
+        //cout<<"[xx]what?"<<endl;
         encoder.encode(gene_data,scale,plaintext);
-        cout<<"[xxxx]what?"<<endl;
+        //cout<<"[xxxx]what?"<<endl;
 
         encryptor.encrypt(plaintext,ciphertext);
         return ciphertext;

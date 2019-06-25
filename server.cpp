@@ -47,5 +47,6 @@ int main(){
     cout<< "[+]waiting for encrypted RNA expressing "<<endl;
     vector<Ciphertext> recv_RNA;
     net.read_enc_geneRNAs(recv_RNA);
+    cout<<"recv"<<endl;
     return 0;
 }

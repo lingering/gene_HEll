@@ -1,6 +1,6 @@
 #include <cassert>
 #include "networking.h"
-
+#include "aux.h"
 Networking::Networking(ip::tcp::socket &socket)
     : socket(socket),read_stream(&read_buff),write_stream(&write_buff){}
 
@@ -96,14 +96,7 @@ void Networking::write_relin_key(RelinKeys &relin_key){
     assert(transferred == length);
     write_buff.consume(length);
 }
-void Networking::write_enc_geneRNA(Ciphertext &ciphertext){
-    write_uint32(NET_MAGIC_CIPHERTEXT);
-    ciphertext.save(write_stream);
-    uint32_t length=read_uint32();
-    auto transffered=read(socket,read_buff,transfer_exactly(length));
-    assert(transffered==length);
-    write_buff.consume(length);
-}
+
 
 void Networking::read_enc_geneRNA(Ciphertext &ciphertext) {
     assert(seal_context);
@@ -117,13 +110,29 @@ void Networking::read_enc_geneRNAs(vector<Ciphertext> &ciphertexts) {
     assert(read_uint32() == NET_MAGIC_VECTOR_CIPHERTEXT);
     uint32_t length = read_uint32();
     ciphertexts.resize(length);
+    
     for (size_t i = 0; i < length; i++) {
+        cout<<"recv:"<<i<<endl;
         read_enc_geneRNA(ciphertexts[i]);
+        
     }
+}
+void Networking::write_enc_geneRNA(Ciphertext &ciphertext){
+    write_uint32(NET_MAGIC_CIPHERTEXT);
+    ciphertext.save(write_stream);
+    uint32_t length= write_buff.size();
+    write_uint32(length);
+    
+    auto transffered=write(socket,write_buff,transfer_exactly(length));
+    
+    assert(transffered==length);
+    write_buff.consume(length);
 }
 void Networking::write_enc_geneRNAs(vector<Ciphertext> &ciphertexts) {
     write_uint32(NET_MAGIC_VECTOR_CIPHERTEXT);
+
     write_uint32(ciphertexts.size());
+    cout<<"lingering:"<<ciphertexts.size()<<endl;
     for (size_t i = 0; i < ciphertexts.size(); i++) {
         write_enc_geneRNA(ciphertexts[i]);
     }
