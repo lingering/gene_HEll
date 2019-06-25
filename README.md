@@ -7,7 +7,7 @@ git clone https://github.com/lingering/gene_HEll
 ```
 # Dependecies
 ## 1->SEAL
-make sure to install microsoft ![SEAL](https://github.com/Microsoft/SEAL)<br>
+make sure to install microsoft [SEAL](https://github.com/Microsoft/SEAL)<br>
 ### Must in Global install
 Have root access to the system and thus you can install Microsoft SEAL system-wide as follows:
 ```
