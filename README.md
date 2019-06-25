@@ -1,10 +1,15 @@
 # gene_HEll homor
 project for class CS05177
 # HOW TO USE
-
+```
 git clone https://github.com/lingering/gene_HEll
-# Dependecied
-make sure to install microsoft ![SEAL](https://github.com/Microsoft/SEAL)
+```
+# Dependecies
+make sure to install microsoft ![SEAL](https://github.com/Microsoft/SEAL)<br>
+libboost
+```
+  sudo apt-get install libboost-all-dev
+```
 # Install
 ```
 cd gene_HEll
