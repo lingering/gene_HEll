@@ -1,0 +1,4 @@
+/root/my/SEAL/native/examples/gene_HEll/CMakeFiles/rebuild_cache.dir
+/root/my/SEAL/native/examples/gene_HEll/CMakeFiles/edit_cache.dir
+/root/my/SEAL/native/examples/gene_HEll/CMakeFiles/gene_server.dir
+/root/my/SEAL/native/examples/gene_HEll/CMakeFiles/gene_client.dir
