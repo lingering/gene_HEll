@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 # gene_HEll homomorphic crypto
-=======
-# gene_HEll homormophic crypto for gengetic information
->>>>>>> Stashed changes
 project for class CS05177
 ## ONLY use for test!
 # HOW TO USE
