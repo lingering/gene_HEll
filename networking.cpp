@@ -112,7 +112,7 @@ void Networking::read_enc_geneRNAs(vector<Ciphertext> &ciphertexts) {
     ciphertexts.resize(length);
     
     for (size_t i = 0; i < length; i++) {
-        cout<<"recv:"<<i<<endl;
+        //cout<<"recv:"<<i<<endl;
         read_enc_geneRNA(ciphertexts[i]);
         
     }
@@ -132,7 +132,7 @@ void Networking::write_enc_geneRNAs(vector<Ciphertext> &ciphertexts) {
     write_uint32(NET_MAGIC_VECTOR_CIPHERTEXT);
 
     write_uint32(ciphertexts.size());
-    cout<<"lingering:"<<ciphertexts.size()<<endl;
+    //cout<<"lingering:"<<ciphertexts.size()<<endl;
     for (size_t i = 0; i < ciphertexts.size(); i++) {
         write_enc_geneRNA(ciphertexts[i]);
     }

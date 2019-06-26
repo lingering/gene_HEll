@@ -3,6 +3,7 @@
 #include <boost/asio.hpp>
 #include "networking.h"
 #include "gene.h"
+#include "aux.h"
 using namespace std;
 using namespace boost::asio;
 using namespace seal;
@@ -25,6 +26,7 @@ int main(){
     acceptor.accept(socket);
     Networking net(socket);
     GeneParams param(ploy_modulus_degree);
+    SecretKey secret_key;
     net.set_seal_context(param.context);
 
     cout<<"[+]connection established,sending hello to the client"<<endl;
@@ -34,7 +36,6 @@ int main(){
     //cout << "waiting for set size"<<endl;
     //size_t server_size=net.read_uint32();
    
-
     
     cout<<"[+]receiving user's public key"<<endl;
     PublicKey recv_pk;
@@ -47,6 +48,43 @@ int main(){
     cout<< "[+]waiting for encrypted RNA expressing "<<endl;
     vector<Ciphertext> recv_RNA;
     net.read_enc_geneRNAs(recv_RNA);
-    cout<<"recv"<<endl;
+    cout<<recv_RNA[0].size()<<endl;
+    cout<<"[+]received User data"<<endl;
+    
+    //evaluate distance
+    Evaluator evaluator(param.context);
+    Encryptor encryptor(param.context,recv_pk);
+    
+    //CKKSEncoder encoder(param.context);
+    vector<double> refer;
+    double curr_point = 0;
+
+    for (size_t i = 0; i < ploy_modulus_degree; i++, curr_point += 0.01)
+    {
+        refer.push_back(curr_point);
+    }
+
+    print_vector(refer);
+    vector<Ciphertext> enc_refer;
+    vector<double> slice;
+    size_t step=ploy_modulus_degree/2;
+    size_t i=0;
+    while(i<refer.size()/step){
+        if((refer.end()-(refer.begin()+(i+1)*step))<step)
+            slice.assign(refer.begin()+i*step,refer.end());
+
+        else{
+        slice.assign(refer.begin()+i*step,refer.begin()+(i+1)*step);
+        }
+        enc_refer.push_back(param.encrypted_genedata(slice,encryptor));
+        evaluator.sub(enc_refer[i],recv_RNA[i],enc_refer[i]);
+        evaluator.square_inplace(enc_refer[i]);
+        slice.clear();
+        
+        i+=1;
+        
+    }
+    net.write_enc_geneRNAs(enc_refer);
+    
     return 0;
 }

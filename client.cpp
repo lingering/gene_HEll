@@ -61,13 +61,13 @@ int main(){
 	std::chrono::microseconds time_calc_sum;
 	time_start = std::chrono::high_resolution_clock::now();*/
     GeneParams params(poly_modulus_degree);
-       
+    CKKSEncoder encoder(params.context);
     //GeneSender Client_param(params);
 
     cout <<"[+]sending hello, size,seeds,pk,relin_keys"<<endl;
     net.set_seal_context(params.context);
     net.send_command();
-    cout<<"[#]hello back success"<<endl;
+    //cout<<"[#]hello back success"<<endl;
     //net.write_uint32(gene_size);
     //net.write_uint64s(params.seeds);
     
@@ -76,20 +76,21 @@ int main(){
     //process gene data
     cout << "[+]encrypting gene_data:"<<endl;
     vector<double> input;
-	vector<double> refer;
     double curr_point = 0;
 
     for (size_t i = 0; i < poly_modulus_degree; i++, curr_point += 0.1)
     {
         input.push_back(curr_point);
     }
-
+    print_vector(input);
     //cout << "Input vector: size:"<<input.size() << endl;
     //print_vector(input, 3, 7);
     vector<Ciphertext> enc_gene_data_;
     vector<double> slice;
     size_t step=poly_modulus_degree/2;
     size_t i=0;
+    Encryptor encryptor(params.context,params.pub_key);
+    Decryptor decryptor(params.context,params.sec_key);
     while(i<input.size()/step){
         if((input.end()-(input.begin()+(i+1)*step))<step)
             slice.assign(input.begin()+i*step,input.end());
@@ -97,14 +98,40 @@ int main(){
         else{
         slice.assign(input.begin()+i*step,input.begin()+(i+1)*step);
         }
-        enc_gene_data_.push_back(params.encrypted_genedata(slice));
+        enc_gene_data_.push_back(params.encrypted_genedata(slice,encryptor));
         slice.clear();
         i+=1;
         
     }
-    ;
+    
     net.write_enc_geneRNAs(enc_gene_data_);
-    cout<<"[+s]"<<i<<endl;
+    cout<<"[+]success sending encrypted RNA data"<<endl;
+
+    vector<Ciphertext> return_data;
+    double_t distance=0;
+    vector<double> plain;
+    //use secert_key to decrypt returned matrix from server. 
+    //instead of single instruction on single data
+    //we use SIMD bacth tech to accelerate the whole calculation
+    //in trade of one more client-server  interaction.
+    net.read_enc_geneRNAs(return_data);
+    i=0;
+    while(i<return_data.size()){
+        plain.assign(params.decrypt_data(return_data[i],decryptor,encoder).begin(),params.decrypt_data(return_data[i],decryptor,encoder).end());
+        for(size_t i=0;i<plain.size();i++)
+            {
+                distance+=plain[i];
+            }
+        i+=1;
+        plain.clear();
+        
+    }
+    //done calcating distance,encrypt distance
+    // for performance,we use the BFV scheme supported in SEAL
+    //BFV can only operate on integer,so we convert distance to an interger 
+    //with little accuracy loss
+
+
     free(buffer);
     return 0;
 }

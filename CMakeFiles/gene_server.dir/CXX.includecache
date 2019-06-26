@@ -24,6 +24,18 @@ random
 seal/seal.h
 /root/my/SEAL/native/examples/gene_HEll/seal/seal.h
 
+/root/my/SEAL/native/examples/gene_HEll/gene.h
+vector
+-
+optional
+-
+seal/seal.h
+/root/my/SEAL/native/examples/gene_HEll/seal/seal.h
+stdio.h
+-
+stdlib.h
+-
+
 /root/my/SEAL/native/examples/gene_HEll/networking.cpp
 cassert
 -
@@ -41,4 +53,16 @@ boost/asio.hpp
 /root/my/SEAL/native/examples/gene_HEll/boost/asio.hpp
 seal/seal.h
 /root/my/SEAL/native/examples/gene_HEll/seal/seal.h
+
+/root/my/SEAL/native/examples/gene_HEll/server.cpp
+cstdint
+-
+iostream
+-
+boost/asio.hpp
+-
+networking.h
+/root/my/SEAL/native/examples/gene_HEll/networking.h
+gene.h
+/root/my/SEAL/native/examples/gene_HEll/gene.h
 

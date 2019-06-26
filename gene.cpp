@@ -79,9 +79,9 @@ SecretKey& GeneSender::secret_key(){
     return secret_key_;
 }
 
-Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data){
+Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data,Encryptor &encryptor){
     //assert(gene_data.size()==params.receiver_size);
-    Encryptor encryptor(context,pub_key);
+    //Encryptor encryptor(context,pub_key);
     Plaintext plaintext;
     Ciphertext ciphertext;
     vector<double> partial_gene;
@@ -92,6 +92,7 @@ Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data){
         BatchEncoder encoder(context);
         size_t slot_count = encoder.slot_count();
         encoder.encode(gene_data,plaintext);
+        encryptor.encrypt(plaintext,ciphertext);
         
     }
     else{
@@ -107,5 +108,11 @@ Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data){
         encryptor.encrypt(plaintext,ciphertext);
         return ciphertext;
     }
-    
+}
+vector<double> GeneParams::decrypt_data(Ciphertext &ciphertex,Decryptor &decryptor,CKKSEncoder &encoder){
+    Plaintext plain;
+    decryptor.decrypt(ciphertex,plain);
+    vector<double> result;
+    encoder.decode(plain,result);
+    return result;
 }
