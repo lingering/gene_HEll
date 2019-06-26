@@ -7,13 +7,15 @@
 #include <stdlib.h>
 using namespace std;
 using namespace seal;
-#define gene_scheme 0//1 for "BFV" 0 for "CKKS"
+//define gene_scheme 1 for "BFV" 0 for "CKKS"
+#define bfv 1
+#define ckks 0
 typedef pair<size_t, size_t> bucket_slot;
 
 class GeneParams
 {
 public:
-    GeneParams(size_t poly_modulus_degree);
+    GeneParams(size_t poly_modulus_degree,bool gene_scheme);
     // you *must* call either generate_seeds or set_seeds.
     void generate_seeds();
     void set_seeds(vector<uint64_t> &seeds_ext);
@@ -66,7 +68,6 @@ class GeneReceiver
 public:
     GeneReceiver(GeneParams &params);
     
-
 private:
     GeneParams &params;
 };

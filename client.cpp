@@ -60,7 +60,7 @@ int main(){
 	std::chrono::microseconds time_pram_gen_sum;
 	std::chrono::microseconds time_calc_sum;
 	time_start = std::chrono::high_resolution_clock::now();*/
-    GeneParams params(poly_modulus_degree);
+    GeneParams params(poly_modulus_degree,ckks);
     CKKSEncoder encoder(params.context);
     //GeneSender Client_param(params);
 
@@ -98,7 +98,7 @@ int main(){
         else{
         slice.assign(input.begin()+i*step,input.begin()+(i+1)*step);
         }
-        enc_gene_data_.push_back(params.encrypted_genedata(slice,encryptor));
+        enc_gene_data_.push_back(params.encrypted_genedata(slice,encryptor,ckks));
         slice.clear();
         i+=1;
         
@@ -126,12 +126,27 @@ int main(){
         plain.clear();
         
     }
-    //done calcating distance,encrypt distance
-    // for performance,we use the BFV scheme supported in SEAL
+    //done calcating distance,encrypt distance and send back to server to get 
+    //finall result(cancer or not).for performance,
+    //we use the BFV scheme supported in SEAL
     //BFV can only operate on integer,so we convert distance to an interger 
     //with little accuracy loss
+    uint32_t dis_int=(uint32_t)distance;
+    GeneParams param(poly_modulus_degree,bfv);
+    Encryptor encryptor_dis(param.context,param.pub_key);
+    Decryptor decryptor_dis(param.context,param.sec_key);
+    
+    Plaintext plain_dis(to_string(dis_int));
+    Ciphertext enc_distance;
+    encryptor_dis.encrypt(plain_dis,enc_distance);
 
+    net.write_public_key(param.pub_key);
+    net.write_enc_geneRNA(enc_distance);
 
+    net.read_enc_geneRNA(enc_distance);
+    decryptor_dis.decrypt(enc_distance,plain_dis);
+    string result=plain_dis.to_string;
+    
     free(buffer);
     return 0;
 }

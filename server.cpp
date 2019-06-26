@@ -7,13 +7,13 @@
 using namespace std;
 using namespace boost::asio;
 using namespace seal;
-
+#define threhold 150
 int main(){
     vector<float_t> inp;
     size_t iput_size;
     unsigned short port=9999;
     size_t ploy_modulus_degree =8192;
-
+    //inital network interface
     io_context iocontext;
     ip::tcp::acceptor acceptor(iocontext);
     ip::tcp::endpoint endp(ip::tcp::v4(),port);
@@ -25,7 +25,7 @@ int main(){
     ip::tcp::socket socket(iocontext);
     acceptor.accept(socket);
     Networking net(socket);
-    GeneParams param(ploy_modulus_degree);
+    GeneParams param(ploy_modulus_degree,ckks);
     SecretKey secret_key;
     net.set_seal_context(param.context);
 
@@ -85,6 +85,19 @@ int main(){
         
     }
     net.write_enc_geneRNAs(enc_refer);
-    
+    //processing encrypted distance that are send back
+    net.read_public_key(recv_pk);
+    Ciphertext final_distance;
+    net.read_enc_geneRNA(final_distance);
+    vector<uint32_t> recv_distance;
+    GeneParams params(ploy_modulus_degree,bfv);
+    Evaluator eval(params.context);
+    Plaintext plain_dis(to_string(threhold));
+    Encryptor thre_encryptor(params.context,recv_pk);
+    Ciphertext enc_threhold;
+    thre_encryptor.encrypt(plain_dis,enc_threhold);
+    evaluator.sub_inplace(final_distance,enc_threhold);
+
+    net.write_enc_geneRNA(final_distance);
     return 0;
 }
