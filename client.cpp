@@ -23,7 +23,7 @@ int main(){
         }
     
        
-    
+    float totala_time=0;
     fseek(pFile,0,SEEK_END);
     lSize=ftell(pFile);
     rewind(pFile);
@@ -115,8 +115,9 @@ int main(){
     //we use SIMD bacth tech to accelerate the whole calculation
     //in trade of one more client-server  interaction.
     net.read_enc_geneRNAs(return_data);
+    //cout<<"xxxxxxx"<<endl;
     i=0;
-    while(i<return_data.size()){
+   /*  while(i<return_data.size()){
         plain.assign(params.decrypt_data(return_data[i],decryptor,encoder).begin(),params.decrypt_data(return_data[i],decryptor,encoder).end());
         for(size_t i=0;i<plain.size();i++)
             {
@@ -125,7 +126,10 @@ int main(){
         i+=1;
         plain.clear();
         
-    }
+    }*/
+    totala_time+=evalution_distance();
+    
+
     //done calcating distance,encrypt distance and send back to server to get 
     //finall result(cancer or not).for performance,
     //we use the BFV scheme supported in SEAL
@@ -140,13 +144,11 @@ int main(){
     Ciphertext enc_distance;
     encryptor_dis.encrypt(plain_dis,enc_distance);
 
-    net.write_public_key(param.pub_key);
+    net.write_public_key(params.pub_key);
     net.write_enc_geneRNA(enc_distance);
 
     net.read_enc_geneRNA(enc_distance);
     decryptor_dis.decrypt(enc_distance,plain_dis);
-    string result=plain_dis.to_string;
-    
-    free(buffer);
+    totala_time+=evalution_distance();
     return 0;
 }

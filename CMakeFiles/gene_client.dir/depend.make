@@ -6,6 +6,9 @@ CMakeFiles/gene_client.dir/client.cpp.o: client.cpp
 CMakeFiles/gene_client.dir/client.cpp.o: gene.h
 CMakeFiles/gene_client.dir/client.cpp.o: networking.h
 
+CMakeFiles/gene_client.dir/evalution.cpp.o: aux.h
+CMakeFiles/gene_client.dir/evalution.cpp.o: evalution.cpp
+
 CMakeFiles/gene_client.dir/gene.cpp.o: aux.h
 CMakeFiles/gene_client.dir/gene.cpp.o: gene.cpp
 CMakeFiles/gene_client.dir/gene.cpp.o: gene.h

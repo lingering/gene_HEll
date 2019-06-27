@@ -76,7 +76,7 @@ int main(){
         else{
         slice.assign(refer.begin()+i*step,refer.begin()+(i+1)*step);
         }
-        enc_refer.push_back(param.encrypted_genedata(slice,encryptor));
+        enc_refer.push_back(param.encrypted_genedata(slice,encryptor,ckks));
         evaluator.sub(enc_refer[i],recv_RNA[i],enc_refer[i]);
         evaluator.square_inplace(enc_refer[i]);
         slice.clear();

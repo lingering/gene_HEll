@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 #include <vector>
 #include <string>
@@ -66,6 +67,8 @@ inline void print_parameters(std::shared_ptr<seal::SEALContext> context)
 
     std::cout << "\\" << std::endl;
 }
+float evalution_distance();
+float evalution_disease_detect();
 inline std::ostream &operator <<(std::ostream &stream, seal::parms_id_type parms_id)
 {
     /*

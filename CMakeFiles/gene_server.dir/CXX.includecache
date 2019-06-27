@@ -13,6 +13,8 @@ iostream
 -
 iomanip
 -
+fstream
+-
 vector
 -
 string
@@ -23,6 +25,24 @@ random
 -
 seal/seal.h
 /root/my/SEAL/native/examples/gene_HEll/seal/seal.h
+
+/root/my/SEAL/native/examples/gene_HEll/evalution.cpp
+aux.h
+/root/my/SEAL/native/examples/gene_HEll/aux.h
+
+/root/my/SEAL/native/examples/gene_HEll/gene.cpp
+gene.h
+/root/my/SEAL/native/examples/gene_HEll/gene.h
+seal/seal.h
+/root/my/SEAL/native/examples/gene_HEll/seal/seal.h
+cassert
+-
+iostream
+-
+gene_random.h
+/root/my/SEAL/native/examples/gene_HEll/gene_random.h
+aux.h
+/root/my/SEAL/native/examples/gene_HEll/aux.h
 
 /root/my/SEAL/native/examples/gene_HEll/gene.h
 vector
@@ -35,6 +55,12 @@ stdio.h
 -
 stdlib.h
 -
+
+/root/my/SEAL/native/examples/gene_HEll/gene_random.h
+cstdint
+-
+seal/seal.h
+/root/my/SEAL/native/examples/gene_HEll/seal/seal.h
 
 /root/my/SEAL/native/examples/gene_HEll/networking.cpp
 cassert
@@ -65,4 +91,6 @@ networking.h
 /root/my/SEAL/native/examples/gene_HEll/networking.h
 gene.h
 /root/my/SEAL/native/examples/gene_HEll/gene.h
+aux.h
+/root/my/SEAL/native/examples/gene_HEll/aux.h
 

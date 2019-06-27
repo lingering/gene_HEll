@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "/root/my/SEAL/native/examples/bin/gene_server"
   "/root/my/SEAL/native/examples/bin/gene_server.pdb"
+  "CMakeFiles/gene_server.dir/evalution.cpp.o"
   "CMakeFiles/gene_server.dir/gene.cpp.o"
   "CMakeFiles/gene_server.dir/gene_random.cpp.o"
   "CMakeFiles/gene_server.dir/networking.cpp.o"

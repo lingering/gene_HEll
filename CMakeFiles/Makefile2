@@ -76,12 +76,12 @@ preinstall:
 CMakeFiles/gene_server.dir/all:
 	$(MAKE) -f CMakeFiles/gene_server.dir/build.make CMakeFiles/gene_server.dir/depend
 	$(MAKE) -f CMakeFiles/gene_server.dir/build.make CMakeFiles/gene_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/my/SEAL/native/examples/gene_HEll/CMakeFiles --progress-num=6,7,8,9,10 "Built target gene_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/my/SEAL/native/examples/gene_HEll/CMakeFiles --progress-num=7,8,9,10,11,12 "Built target gene_server"
 .PHONY : CMakeFiles/gene_server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gene_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/my/SEAL/native/examples/gene_HEll/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/my/SEAL/native/examples/gene_HEll/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gene_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/my/SEAL/native/examples/gene_HEll/CMakeFiles 0
 .PHONY : CMakeFiles/gene_server.dir/rule
@@ -103,12 +103,12 @@ CMakeFiles/gene_server.dir/clean:
 CMakeFiles/gene_client.dir/all:
 	$(MAKE) -f CMakeFiles/gene_client.dir/build.make CMakeFiles/gene_client.dir/depend
 	$(MAKE) -f CMakeFiles/gene_client.dir/build.make CMakeFiles/gene_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/my/SEAL/native/examples/gene_HEll/CMakeFiles --progress-num=1,2,3,4,5 "Built target gene_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/my/SEAL/native/examples/gene_HEll/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target gene_client"
 .PHONY : CMakeFiles/gene_client.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gene_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/my/SEAL/native/examples/gene_HEll/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/my/SEAL/native/examples/gene_HEll/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gene_client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/my/SEAL/native/examples/gene_HEll/CMakeFiles 0
 .PHONY : CMakeFiles/gene_client.dir/rule

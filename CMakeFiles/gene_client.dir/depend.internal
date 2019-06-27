@@ -6,6 +6,9 @@ CMakeFiles/gene_client.dir/client.cpp.o
  /root/my/SEAL/native/examples/gene_HEll/client.cpp
  /root/my/SEAL/native/examples/gene_HEll/gene.h
  /root/my/SEAL/native/examples/gene_HEll/networking.h
+CMakeFiles/gene_client.dir/evalution.cpp.o
+ /root/my/SEAL/native/examples/gene_HEll/aux.h
+ /root/my/SEAL/native/examples/gene_HEll/evalution.cpp
 CMakeFiles/gene_client.dir/gene.cpp.o
  /root/my/SEAL/native/examples/gene_HEll/aux.h
  /root/my/SEAL/native/examples/gene_HEll/gene.cpp

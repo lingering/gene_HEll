@@ -4,7 +4,7 @@
 #include <iostream>
 #include "gene_random.h"
 #include "aux.h"
-GeneParams::GeneParams(size_t poly_modulus_degree)
+GeneParams::GeneParams(size_t poly_modulus_degree,bool gene_scheme)
     : receiver_size(receiver_size),
       sender_size(sender_size),
       input_bits(input_bits),
@@ -20,7 +20,9 @@ if (gene_scheme){
     parms.set_coeff_modulus(CoeffModulus::BFVDefault(poly_modulus_degree));
     parms.set_plain_modulus(512);
     context = SEALContext::Create(parms);
-    
+    KeyGenerator keygen(context);
+    pub_key = keygen.public_key();
+    sec_key = keygen.secret_key();
     }
 else{
     EncryptionParameters parms(scheme_type::CKKS);
@@ -79,7 +81,7 @@ SecretKey& GeneSender::secret_key(){
     return secret_key_;
 }
 
-Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data,Encryptor &encryptor){
+Ciphertext GeneParams::encrypted_genedata(vector<double_t> &gene_data,Encryptor &encryptor,bool gene_scheme){
     //assert(gene_data.size()==params.receiver_size);
     //Encryptor encryptor(context,pub_key);
     Plaintext plaintext;

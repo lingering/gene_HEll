@@ -26,8 +26,8 @@ public:
     size_t sender_bucket_capacity();
     size_t sender_partition_count();
     size_t window_size();
-    Ciphertext encrypted_genedata(vector<double_t> &gene_data,Encryptor &encryptor);
-    vector<double> GeneParams::decrypt_data(Ciphertext &ciphertex,Decryptor &decryptor,CKKSEncoder &encoder);
+    Ciphertext encrypted_genedata(vector<double_t> &gene_data,Encryptor &encryptor,bool gene_scheme);
+    vector<double> decrypt_data(Ciphertext &ciphertex,Decryptor &decryptor,CKKSEncoder &encoder);
     void set_sender_partition_count(size_t new_value);
 
 

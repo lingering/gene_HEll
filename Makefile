@@ -163,6 +163,36 @@ client.cpp.s:
 	$(MAKE) -f CMakeFiles/gene_client.dir/build.make CMakeFiles/gene_client.dir/client.cpp.s
 .PHONY : client.cpp.s
 
+evalution.o: evalution.cpp.o
+
+.PHONY : evalution.o
+
+# target to build an object file
+evalution.cpp.o:
+	$(MAKE) -f CMakeFiles/gene_server.dir/build.make CMakeFiles/gene_server.dir/evalution.cpp.o
+	$(MAKE) -f CMakeFiles/gene_client.dir/build.make CMakeFiles/gene_client.dir/evalution.cpp.o
+.PHONY : evalution.cpp.o
+
+evalution.i: evalution.cpp.i
+
+.PHONY : evalution.i
+
+# target to preprocess a source file
+evalution.cpp.i:
+	$(MAKE) -f CMakeFiles/gene_server.dir/build.make CMakeFiles/gene_server.dir/evalution.cpp.i
+	$(MAKE) -f CMakeFiles/gene_client.dir/build.make CMakeFiles/gene_client.dir/evalution.cpp.i
+.PHONY : evalution.cpp.i
+
+evalution.s: evalution.cpp.s
+
+.PHONY : evalution.s
+
+# target to generate assembly for a file
+evalution.cpp.s:
+	$(MAKE) -f CMakeFiles/gene_server.dir/build.make CMakeFiles/gene_server.dir/evalution.cpp.s
+	$(MAKE) -f CMakeFiles/gene_client.dir/build.make CMakeFiles/gene_client.dir/evalution.cpp.s
+.PHONY : evalution.cpp.s
+
 gene.o: gene.cpp.o
 
 .PHONY : gene.o
@@ -293,6 +323,9 @@ help:
 	@echo "... client.o"
 	@echo "... client.i"
 	@echo "... client.s"
+	@echo "... evalution.o"
+	@echo "... evalution.i"
+	@echo "... evalution.s"
 	@echo "... gene.o"
 	@echo "... gene.i"
 	@echo "... gene.s"
