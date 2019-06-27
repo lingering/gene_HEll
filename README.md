@@ -45,6 +45,7 @@ Or, if you plan to develop CMake or otherwise run the test suite, create a separ
 cd gene_HEll
 cmake .
 make
+cp compare index use ../bin
 cd ..
 ```
 ALl the executable files are in bin
